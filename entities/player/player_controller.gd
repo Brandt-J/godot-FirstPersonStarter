@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Player
 
 ###################-VARIABLES-####################
 
@@ -10,6 +11,7 @@ export(float) var FOV = 80.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node(head_path)
 onready var cam: Camera = get_node(cam_path)
+onready var weaponHandler: WeaponHandler = $Head/WeaponHandler
 # Move
 var velocity := Vector3()
 var direction := Vector3()
@@ -59,6 +61,7 @@ func _input(event: InputEvent) -> void:
 		mouse_axis = event.relative
 		camera_rotation()
 
+	weaponHandler.isFiring = Input.is_action_pressed("Fire")
 
 func walk(delta: float) -> void:
 	# Input
@@ -116,9 +119,9 @@ func walk(delta: float) -> void:
 	# clamping (to stop on slopes)
 	if direction.dot(velocity) == 0:
 		var _vel_clamp := 0.25
-		if abs(velocity.x) < _vel_clamp:
+		if velocity.x < _vel_clamp and velocity.x > -_vel_clamp:
 			velocity.x = 0
-		if abs(velocity.z) < _vel_clamp:
+		if velocity.z < _vel_clamp and velocity.z > -_vel_clamp:
 			velocity.z = 0
 	
 	# Move
@@ -170,3 +173,6 @@ func camera_rotation() -> void:
 
 func can_sprint() -> bool:
 	return (sprint_enabled and is_on_floor())
+	
+func pickup_weapon(weaponScene: PackedScene) -> void:
+	weaponHandler.pick_up_weapon(weaponScene)
