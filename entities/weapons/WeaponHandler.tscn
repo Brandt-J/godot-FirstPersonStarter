@@ -6,7 +6,9 @@
 
 [node name="WeaponHandler" type="Spatial"]
 script = ExtResource( 1 )
-keys2Weapons = {
-1: ExtResource( 2 ),
-2: ExtResource( 3 )
-}
+
+[node name="WeaponBase" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="WeaponBase2" parent="." instance=ExtResource( 3 )]
+visible = false

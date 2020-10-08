@@ -5,11 +5,12 @@ export var weaponName: String = 'BaseWeapon'
 export var bulletScene: PackedScene
 export var automaticFireMode: bool = true
 export var fireDelay: float = 0.1
-export var ammunition: int = 10  # amount of ammu the weapon has by default.
+export var baseAmmunition: int = 10  # amount of ammu the weapon has by default.
 export var spread: float = 0.2
 
 var isFiring: bool = false
 var _wasFiring: bool = false
+onready var _ammunition: int = baseAmmunition
 onready var _projectileTimer: Timer = $LoadProjectileTimer
 onready var _projectileSpawnPoint: Position3D = $ProjectileSpawnPoint
 
@@ -33,6 +34,10 @@ func _process(_delta):
 		_end_firing()
 
 
+func add_ammunition(amount: int) -> void:
+	_ammunition += amount
+	
+
 func _start_firing():
 	if _projectileTimer.time_left == 0:
 		_fire_projectile()
@@ -52,11 +57,12 @@ func _reset_timer():
 
 
 func _fire_projectile():
-	if ammunition > 0:
+	if _ammunition > 0:
 		_spawn_projectile()
-		ammunition -= 1
+		_ammunition -= 1
 	else:
 		print('out of ammu..')
+
 
 func _spawn_projectile() -> void:
 	var bullet: RigidBody = bulletScene.instance()

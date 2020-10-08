@@ -62,7 +62,12 @@ func _input(event: InputEvent) -> void:
 		camera_rotation()
 
 	weaponHandler.isFiring = Input.is_action_pressed("Fire")
-
+	if Input.is_action_just_pressed("Weapon1"):
+		weaponHandler.switch_to_weapon_of_index(0)
+	elif Input.is_action_just_pressed("Weapon2"):
+		weaponHandler.switch_to_weapon_of_index(1)
+		
+	
 func walk(delta: float) -> void:
 	# Input
 	direction = Vector3()
@@ -174,5 +179,6 @@ func camera_rotation() -> void:
 func can_sprint() -> bool:
 	return (sprint_enabled and is_on_floor())
 	
-func pickup_weapon(weaponScene: PackedScene) -> void:
-	weaponHandler.pick_up_weapon(weaponScene)
+func pickup_weapon(weaponName: String) -> void:
+	print('pickup ', weaponName)
+	weaponHandler.pick_up_weapon(weaponName)
