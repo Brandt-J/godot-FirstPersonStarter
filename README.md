@@ -1,3 +1,11 @@
+FORKed of the First Person Starter project described below.
+I added functionality of simple weapons and weapon pickups.
+Walk into the pickup spheres to pickup the weapon. Fire the weapon with Left Mouse Button.
+When ammunition is empty, just walk again in the pickup to refill ammunition.
+
+All logic is kept very basic so you can quickly alter and adapt to your project's needs.
+
+
 # First Person Starter ![Godot 3.2](https://img.shields.io/badge/godot-v3.2-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/EzNSoQZ.png)
 
