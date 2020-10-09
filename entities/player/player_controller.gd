@@ -1,6 +1,12 @@
 extends KinematicBody
 class_name Player
 
+
+"""
+For the weapon related stuff, see the lines in the _input method.
+Furthermore, the pickup_weapon method is needed.
+"""
+
 ###################-VARIABLES-####################
 
 # Camera
@@ -180,5 +186,4 @@ func can_sprint() -> bool:
 	return (sprint_enabled and is_on_floor())
 	
 func pickup_weapon(weaponName: String) -> void:
-	print('pickup ', weaponName)
 	weaponHandler.pick_up_weapon(weaponName)

@@ -4,6 +4,9 @@ class_name WeaponHandler
 """
 Add each weapon as child scene to the weapon Handler. And hide them.
 When activating a weapon, these nodes are then referred to.
+Currently, the weapon handler also defines where the weapons are positioned
+in world. So when adding this node to the parent Player Scene, make sure
+it is at a reasonable position.
 """
 
 

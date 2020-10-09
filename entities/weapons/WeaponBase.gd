@@ -1,6 +1,12 @@
 extends Spatial
 class_name WeaponBase
 
+"""
+The basic Weapon class. Create as many inherited other weapons as you want. 
+They need to have a unique 'weaponName' to be identified by the weaponHandler
+"""
+
+
 export var weaponName: String = 'BaseWeapon'
 export var bulletScene: PackedScene
 export var automaticFireMode: bool = true
